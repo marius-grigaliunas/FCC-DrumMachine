@@ -4,9 +4,10 @@ import { useEffect } from 'react'
 interface DrumPadProps {
     letter: string,
     audioFileName: string
+    sourceLink: string
 }
 
-export default function DrumPad( {letter, audioFileName} : DrumPadProps) {
+export default function DrumPad( {letter, audioFileName, sourceLink} : DrumPadProps) {
     const audioRef = useRef<HTMLAudioElement | null>(null)
 
     const play = () => {
@@ -17,9 +18,7 @@ export default function DrumPad( {letter, audioFileName} : DrumPadProps) {
     }
 
     useEffect(() => {
-        const keyboardPlay = (event: KeyboardEvent) => {
-            console.log(event)
-            
+        const keyboardPlay = (event: KeyboardEvent) => {   
             event.key.toUpperCase() == letter.toUpperCase() && play() 
         }
 
@@ -38,8 +37,9 @@ export default function DrumPad( {letter, audioFileName} : DrumPadProps) {
         >
             {letter}
             <audio 
-            id={letter} 
-            src='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3'
+            id={letter}
+            className='clip' 
+            src={sourceLink}
             ref={audioRef}></audio>
         </button>
       )

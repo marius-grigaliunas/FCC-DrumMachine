@@ -9,8 +9,19 @@ function App() {
       <div id='drum-machine'>
         <div id='drum-pad-container'>
           <DrumPad 
-            letter="Q"
-            audioFileName="Heater 1"
+          letter="Q" 
+          audioFileName="Heater 1" 
+          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3'
+          />
+          <DrumPad 
+          letter="Q" 
+          audioFileName="Heater 1" 
+          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3'
+          />
+          <DrumPad 
+          letter="Q" 
+          audioFileName="Heater 1" 
+          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3'
           />
         </div>
         <div id='display'>
