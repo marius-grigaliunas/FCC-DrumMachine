@@ -5,15 +5,17 @@ interface DrumPadProps {
     letter: string,
     audioFileName: string
     sourceLink: string
+    updateDisplay: FunctionStringCallback
 }
 
-export default function DrumPad( {letter, audioFileName, sourceLink} : DrumPadProps) {
+export default function DrumPad( {letter, audioFileName, sourceLink, updateDisplay} : DrumPadProps) {
     const audioRef = useRef<HTMLAudioElement | null>(null)
 
     const play = () => {
         if (audioRef.current) {
             audioRef.current.currentTime = 0
             audioRef.current.play()
+            updateDisplay(audioFileName)
         }
     }
 
@@ -28,6 +30,7 @@ export default function DrumPad( {letter, audioFileName, sourceLink} : DrumPadPr
           window.removeEventListener('keydown', keyboardPlay)
         }
     },[])
+
   
     return (
         <button

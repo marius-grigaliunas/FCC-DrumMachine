@@ -3,6 +3,8 @@ import DrumPad from './components/DrumPad'
 import './App.css'
 
 function App() {
+  const [currentSound, setCurrentSound] = useState("")
+
 
   return (
     <>
@@ -12,19 +14,11 @@ function App() {
           letter="Q" 
           audioFileName="Heater 1" 
           sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3'
-          />
-          <DrumPad 
-          letter="Q" 
-          audioFileName="Heater 1" 
-          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3'
-          />
-          <DrumPad 
-          letter="Q" 
-          audioFileName="Heater 1" 
-          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3'
+          updateDisplay={setCurrentSound}
           />
         </div>
         <div id='display'>
+          {currentSound}
         </div>
       </div>
     </>
