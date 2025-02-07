@@ -8,8 +8,13 @@ function App() {
 
   return (
     <>
-      <div id='drum-machine'>
-        <div id='drum-pad-container'>
+      <div id='drum-machine'
+      className='flex flex-col items-center justify-center max-w-3xl self-center'
+      >
+        <div 
+        id='drum-pad-container'
+        className='grid grid-cols-3 gap-5 w-fit mx-auto'
+        >
           <DrumPad 
           letter="Q" 
           audioFileName="Heater 1" 
