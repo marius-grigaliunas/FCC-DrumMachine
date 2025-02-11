@@ -1,5 +1,4 @@
-import { useRef, useState } from 'react'
-import { useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 
 interface DrumPadProps {
     letter: string,
@@ -8,28 +7,29 @@ interface DrumPadProps {
     updateDisplay: FunctionStringCallback
 }
 
-export default function DrumPad( {letter, audioFileName, sourceLink, updateDisplay} : DrumPadProps) {
+export default function DrumPad({ letter, audioFileName, sourceLink, updateDisplay }: DrumPadProps) {
     const audioRef = useRef<HTMLAudioElement | null>(null)
-    const [isPlaying, setIsPlaying] = useState(false);
+    const buttonRef = useRef<HTMLButtonElement | null>(null)
 
     const play = () => {
         if (audioRef.current) {
             audioRef.current.currentTime = 0
             audioRef.current.play()
             updateDisplay(audioFileName)
-            setIsPlaying(true)
-        }
-    }
-
-    if(audioRef.current) {
-        audioRef.current.onended = () => {
-            setIsPlaying(false)
+            
+            // Add and remove class for animation
+            if (buttonRef.current) {
+                buttonRef.current.classList.add('playing')
+                setTimeout(() => {
+                    buttonRef.current?.classList.remove('playing')
+                }, 200)
+            }
         }
     }
 
     useEffect(() => {
         const keyboardPlay = (event: KeyboardEvent) => {   
-            if(event.key.toUpperCase() == letter.toUpperCase()) {
+            if(event.key.toUpperCase() === letter.toUpperCase()) {
                 play()
             }
         }
@@ -37,24 +37,24 @@ export default function DrumPad( {letter, audioFileName, sourceLink, updateDispl
         window.addEventListener('keydown', keyboardPlay)
 
         return () => {
-          window.removeEventListener('keydown', keyboardPlay)
+            window.removeEventListener('keydown', keyboardPlay)
         }
-    },[])
+    }, [letter])
 
-  
     return (
         <button
-        className={`drum-pad bg-amber-600 p-4 text-red-200 border-amber-300 border-1
-            ${isPlaying ? `bg-amber-400` : ``}`}
-        id={audioFileName}
-        onClick={play}
+            ref={buttonRef}
+            className="drum-pad bg-amber-600 p-4 text-red-200 border-amber-300 border-1 transition-all duration-200"
+            id={audioFileName}
+            onClick={play}
         >
             {letter}
             <audio 
-            id={letter}
-            className='clip' 
-            src={sourceLink}
-            ref={audioRef}></audio>
+                id={letter}
+                className='clip' 
+                src={sourceLink}
+                ref={audioRef}
+            ></audio>
         </button>
-      )
+    )
 }
