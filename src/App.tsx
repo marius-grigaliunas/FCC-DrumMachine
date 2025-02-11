@@ -5,6 +5,7 @@ import './App.css'
 function App() {
   const [currentSound, setCurrentSound] = useState("")
 
+  
 
   return (
     <>
@@ -13,7 +14,7 @@ function App() {
       >
         <div 
         id='drum-pad-container'
-        className='grid grid-cols-3 gap-5 w-fit mx-auto'
+        className='grid grid-cols-3 gap-5 w-fit mx-auto p-2 border-2 bg-amber-950'
         >
           <DrumPad 
           letter="Q" 
@@ -70,7 +71,9 @@ function App() {
           updateDisplay={setCurrentSound}
           />
         </div>
-        <div id='display'>
+        <div id='display'
+        className=''
+        >
           {currentSound}
         </div>
       </div>

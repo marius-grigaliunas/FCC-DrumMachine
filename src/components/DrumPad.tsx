@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useEffect } from 'react'
 
 interface DrumPadProps {
@@ -10,18 +10,28 @@ interface DrumPadProps {
 
 export default function DrumPad( {letter, audioFileName, sourceLink, updateDisplay} : DrumPadProps) {
     const audioRef = useRef<HTMLAudioElement | null>(null)
+    const [isPlaying, setIsPlaying] = useState(false);
 
     const play = () => {
         if (audioRef.current) {
             audioRef.current.currentTime = 0
             audioRef.current.play()
             updateDisplay(audioFileName)
+            setIsPlaying(true)
+        }
+    }
+
+    if(audioRef.current) {
+        audioRef.current.onended = () => {
+            setIsPlaying(false)
         }
     }
 
     useEffect(() => {
         const keyboardPlay = (event: KeyboardEvent) => {   
-            event.key.toUpperCase() == letter.toUpperCase() && play() 
+            if(event.key.toUpperCase() == letter.toUpperCase()) {
+                play()
+            }
         }
 
         window.addEventListener('keydown', keyboardPlay)
@@ -34,7 +44,8 @@ export default function DrumPad( {letter, audioFileName, sourceLink, updateDispl
   
     return (
         <button
-        className='drum-pad'
+        className={`drum-pad bg-amber-600 p-4 text-red-200 border-amber-300 border-1
+            ${isPlaying ? `bg-amber-400` : ``}`}
         id={audioFileName}
         onClick={play}
         >
