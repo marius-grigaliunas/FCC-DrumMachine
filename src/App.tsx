@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <div id='drum-machine'
-      className='flex flex-col items-center justify-center max-w-3xl self-center'
+      className='flex flex-row items-center justify-center max-w-3xl self-center'
       >
         <div 
         id='drum-pad-container'
