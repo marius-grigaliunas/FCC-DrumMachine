@@ -18,7 +18,9 @@ function App() {
           setDisplay={setCurrentSound}
         />
         <div id='display'
-        className='w-40 h-20 m-4 bg-green-900 flex items-center justify-center rounded-2xl border-2 '
+        className='w-40 h-20 m-4 bg-oldschool-bg text-oldschool-green flex 
+                   items-center justify-center rounded-2xl border-black border-2
+        '
         >
           {currentSound}
         </div>

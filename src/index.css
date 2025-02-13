@@ -1,7 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+    --color-oldschool-bg: #282828;
+    --color-oldschool-pad-bg: #474554;
+    --color-oldschool-green: #33FF33;
+    --color-oldschool-amber: #FFB000;
+    --color-oldschool-pink: #ff00ff;
+}
+
 :root {
-    background-color: brown;
+    background-color: #091f16;
     display: flex;
     align-items: center;
     justify-content: center;
