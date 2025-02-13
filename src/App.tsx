@@ -1,78 +1,24 @@
 import { useState } from 'react'
-import DrumPad from './components/DrumPad'
 import './App.css'
+import { DrumPadContainer } from './components/DrumPadContainer'
 
 function App() {
-  const [currentSound, setCurrentSound] = useState("")
+  const [currentSound, setCurrentSound] = useState("Display")
 
-  
+  //make a midi board funtionality, where you can record the sounds you made and let them play on loop.
+  //in the display you can see all the recordings and you can individually turn them off or delete
+
 
   return (
     <>
       <div id='drum-machine'
-      className='flex flex-row items-center justify-center max-w-3xl self-center'
+      className='flex flex-row items-center justify-center w-fit self-center'
       >
-        <div 
-        id='drum-pad-container'
-        className='grid grid-cols-3 gap-5 w-fit mx-auto p-2 border-2 bg-amber-950'
-        >
-          <DrumPad 
-          letter="Q" 
-          audioFileName="Heater 1" 
-          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3'
-          updateDisplay={setCurrentSound}
-          />
-          <DrumPad 
-          letter="W" 
-          audioFileName="Heater 2" 
-          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-2.mp3'
-          updateDisplay={setCurrentSound}
-          />
-          <DrumPad 
-          letter="E" 
-          audioFileName="Heater 3" 
-          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-3.mp3'
-          updateDisplay={setCurrentSound}
-          />
-          <DrumPad 
-          letter="A" 
-          audioFileName="Heater 4" 
-          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-4_1.mp3'
-          updateDisplay={setCurrentSound}
-          />
-          <DrumPad 
-          letter="S" 
-          audioFileName="Heater 5" 
-          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-6.mp3'
-          updateDisplay={setCurrentSound}
-          />
-          <DrumPad 
-          letter="D" 
-          audioFileName="Heater 6" 
-          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Dsc_Oh.mp3'
-          updateDisplay={setCurrentSound}
-          />
-          <DrumPad 
-          letter="Z" 
-          audioFileName="Heater 7" 
-          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Kick_n_Hat.mp3'
-          updateDisplay={setCurrentSound}
-          />
-          <DrumPad 
-          letter="X" 
-          audioFileName="Heater 8" 
-          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/RP4_KICK_1.mp3'
-          updateDisplay={setCurrentSound}
-          />
-          <DrumPad 
-          letter="C" 
-          audioFileName="Heater 9" 
-          sourceLink='https://cdn.freecodecamp.org/testable-projects-fcc/audio/Cev_H2.mp3'
-          updateDisplay={setCurrentSound}
-          />
-        </div>
+        <DrumPadContainer
+          setDisplay={setCurrentSound}
+        />
         <div id='display'
-        className=''
+        className='w-40 h-20 m-4 bg-green-900 flex items-center justify-center rounded-2xl border-2 '
         >
           {currentSound}
         </div>
