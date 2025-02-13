@@ -12,7 +12,8 @@ function App() {
   return (
     <>
       <div id='drum-machine'
-      className='flex flex-row items-center justify-center w-fit self-center'
+      className='flex flex-row items-center justify-center w-fit self-center
+        bg-zinc-900 p-10 rounded-2xl border border-pink-950'
       >
         <DrumPadContainer
           setDisplay={setCurrentSound}

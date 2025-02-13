@@ -10,7 +10,7 @@ export const DrumPadContainer = ( {setDisplay} : DrumPadContainerProps) => {
     <div 
     id='drum-pad-container'
     className='grid grid-cols-3 gap-3 w-fit mx-auto p-2 border-2 bg-gray-950
-        rounded-2xl'
+        rounded-md border-oldschool-green'
     >
       <DrumPad 
       letter="Q" 
