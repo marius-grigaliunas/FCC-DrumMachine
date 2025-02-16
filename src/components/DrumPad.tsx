@@ -45,7 +45,7 @@ export default function DrumPad({ letter, audioFileName, sourceLink, updateDispl
         <button
             ref={buttonRef}
             className="drum-pad bg-zinc-800 p-3 text-oldschool-green font-mono border-oldschool-green
-                border-1 transition-all duration-200 flex justify-center items-center shadow-lg shadow-oldschool-green/30"
+                border-1 transition-all duration-200 flex justify-center items-center ring"
             id={audioFileName}
             onClick={play}
         >

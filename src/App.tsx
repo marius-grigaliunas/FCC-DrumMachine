@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import { DrumPadContainer } from './components/DrumPadContainer'
+import { Display } from './components/Display'
+import { RecordedField } from './components/RecordedField'
 
 function App() {
   const [currentSound, setCurrentSound] = useState("Display")
@@ -18,14 +20,11 @@ function App() {
         <DrumPadContainer
           setDisplay={setCurrentSound}
         />
-        <div id='display'
-        className='w-40 h-20 m-4 bg-oldschool-bg text-oldschool-green flex 
-                   items-center justify-center rounded-2xl border-black border-2
-        '
-        >
-          {currentSound}
-        </div>
+        <Display
+          soundToDisplay={currentSound}
+        />
       </div>
+      <RecordedField/>
     </>
   )
 }
