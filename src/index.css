@@ -27,3 +27,6 @@
     border-color: #098708;
 }
 
+.disabled {
+    background-color: #282828;
+}
