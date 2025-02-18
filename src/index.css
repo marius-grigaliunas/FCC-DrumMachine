@@ -1,7 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+    --color-oldschool-bg: #282828;
+    --color-oldschool-pad-bg: #474554;
+    --color-oldschool-green: #33FF33;
+    --color-oldschool-amber: #FFB000;
+    --color-oldschool-pink: #ff00ff;
+}
+
 :root {
-    background-color: brown;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
 
 .inner-glow {
@@ -10,6 +22,8 @@
 
 .playing {
     transform: scale(0.95);
-    background-color: rgb(251 191 36) !important; /* amber-400 */
+    background-color:  !important; /* amber-400 */
     box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+    border-color: #098708;
 }
+
