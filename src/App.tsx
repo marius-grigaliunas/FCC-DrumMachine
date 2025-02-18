@@ -62,7 +62,9 @@ function App() {
           isRecording={recordingState.isRecording} 
         />
       </div>
-      <RecordedField recordings={recordings} />
+      <RecordedField 
+          recordings={recordings}
+          setRecordings={setRecordings} />
     </>
   );
 }
