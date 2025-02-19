@@ -3,12 +3,12 @@ import './App.css';
 import { DrumPadContainer } from './components/DrumPadContainer';
 import { Display } from './components/Display';
 import { RecordedField } from './components/RecordedField';
-import { Recording } from './components/Types';
+import { Note, Recording } from './components/Types';
 
 function App() {
   const [currentSound, setCurrentSound] = useState("Display");
-  const [recordings, setRecordings] = useState<Recording[][]>([]);
-  const [currentRecording, setCurrentRecording] = useState<{ letter: string; sound: string; time: number; sourceLink: string }[]>([]);
+  const [recordings, setRecordings] = useState<Recording[]>([]);
+  const [currentRecording, setCurrentRecording] = useState<Note[]>([]);
   const [recordingState, setRecordingState] = useState({
     isRecording: false,
     startTime: null as number | null
@@ -30,7 +30,8 @@ function App() {
       // Stopping recording
       console.log("Recording stopped. Captured sequence:", currentRecording);
       if (currentRecording.length > 0) {
-        setRecordings(prev => [...prev, currentRecording]);
+        const random = Math.random().toFixed(2)
+        setRecordings(prev => [...prev, { id: `Recording ${prev.length + random}`, notes: currentRecording }]);
       }
       setRecordingState({
         isRecording: false,

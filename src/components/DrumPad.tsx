@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 
 interface DrumPadProps {
     letter: string;
@@ -13,15 +13,14 @@ export default function DrumPad({ letter, audioFileName, sourceLink, updateDispl
     const buttonRef = useRef<HTMLButtonElement | null>(null);
 
 
-    const play = () => {
+    const play = useCallback(() => {
         if (audioRef.current) {
-            console.log(`DrumPad ${letter} pressed`); // Log press event
+            console.log(`DrumPad ${letter} pressed`);
             audioRef.current.currentTime = 0;
             audioRef.current.play();
             updateDisplay(audioFileName);
-            handleDrumPadPress(letter, audioFileName, sourceLink);  // Call the function to record
+            handleDrumPadPress(letter, audioFileName, sourceLink);
 
-            // Add and remove class for animation
             if (buttonRef.current) {
                 buttonRef.current.classList.add('playing');
                 setTimeout(() => {
@@ -29,7 +28,7 @@ export default function DrumPad({ letter, audioFileName, sourceLink, updateDispl
                 }, 200);
             }
         }
-    };
+    }, [letter, audioFileName, sourceLink, updateDisplay, handleDrumPadPress]);
 
     useEffect(() => {
         const keyboardPlay = (event: KeyboardEvent) => {   
@@ -42,7 +41,7 @@ export default function DrumPad({ letter, audioFileName, sourceLink, updateDispl
         return () => {
             window.removeEventListener('keydown', keyboardPlay);
         };
-    }, [letter]);
+    }, [letter, play]);
 
     return (
         <button
