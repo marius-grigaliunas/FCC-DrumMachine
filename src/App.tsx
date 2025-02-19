@@ -31,7 +31,7 @@ function App() {
       console.log("Recording stopped. Captured sequence:", currentRecording);
       if (currentRecording.length > 0) {
         const random = Math.random().toFixed(2)
-        setRecordings(prev => [...prev, { id: `Recording ${prev.length + random}`, notes: currentRecording }]);
+        setRecordings(prev => [...prev, { id: `${prev.length + random}`, name:`Recording`, notes: currentRecording }]);
       }
       setRecordingState({
         isRecording: false,
@@ -55,7 +55,7 @@ function App() {
 
   return (
     <>
-      <div id='drum-machine' className='flex flex-row items-center justify-center w-fit self-center bg-zinc-900 p-10 rounded-2xl border border-pink-950'>
+      <div id='drum-machine' className='flex flex-row items-center justify-center w-lg self-center bg-zinc-900 p-10 rounded-2xl border border-pink-950'>
         <DrumPadContainer setDisplay={setCurrentSound} handleDrumPadPress={handleDrumPadPress} />
         <Display 
           soundToDisplay={currentSound} 

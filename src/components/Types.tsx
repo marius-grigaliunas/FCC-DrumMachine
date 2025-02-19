@@ -7,5 +7,6 @@ export interface Note {
 
   export interface Recording {
     id: string;
+    name: string;
     notes: Note[];
   }
