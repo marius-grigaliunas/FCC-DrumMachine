@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect } from "react";
-import { Note, Recording } from './Types';
+import { useState, useEffect } from "react";
+import { Recording } from './Types';
 
 interface RecordedFieldProps {
     recordings: Recording[]
@@ -7,31 +7,24 @@ interface RecordedFieldProps {
 }
 export const RecordedField = ({ recordings, setRecordings }: RecordedFieldProps) => {
 
-    const [isPlaying, setIsPlaying] = useState(false)
     const [recordingsArray, setRecordingsArray] = useState<Recording[]>(recordings)
+    const [playingRecordings, setPlayingRecordings] = useState<{[key: string]: boolean}>({});
 
     useEffect(() => {
         setRecordingsArray(recordings);
     }, [recordings]);
 
-    console.log(recordingsArray)
-
     const playRecording = async (recording: Recording) => {
-        // const playButtonRef = useRef<HTMLButtonElement | null>(null)
 
-        console.log("Record started")
-    
-        // if (playButtonRef.current) {
-        //     playButtonRef.current.classList.add("disabled")
-        // }
+        if(playingRecordings[recording.id]) {
+            return;
+        }
 
-        setIsPlaying(true)
+        setPlayingRecordings(prev => ({...prev, [recording.id] : true}));
 
-        
         const playPromises = recording.notes.map(({ time, sourceLink }) => {
             return new Promise<void>((resolve) => {
                 setTimeout(() => {
-    
                     const audio = new Audio(sourceLink);
                     audio.play().then(() => {
                         resolve()
@@ -44,17 +37,12 @@ export const RecordedField = ({ recordings, setRecordings }: RecordedFieldProps)
         })
     
         await Promise.all(playPromises);
-    
-        // if (playButtonRef.current) {
-        //     playButtonRef.current.classList.remove("disabled");
-        // }
-        setIsPlaying(false)
 
-        // plqying doesn't work properly need to fix
+        setPlayingRecordings(prev => ({...prev, [recording.id]: false}));
     }
 
-    const deleteRecording = (record: Recording, recordingsArr: Recording[]) => {
-        const index = recordingsArr.findIndex(r => r.id === record.id)
+    const deleteRecording = (recording: Recording, recordingsArr: Recording[]) => {
+        const index = recordingsArr.findIndex(r => r.id === recording.id)
         if(index > -1) {
             const updatedRecordings = [
                 ...recordingsArr.slice(0, index),
@@ -85,8 +73,9 @@ export const RecordedField = ({ recordings, setRecordings }: RecordedFieldProps)
                             className="mt-2 px-4 py-1 bg-pink-900 border-2 border-pink-950 ring ring-pink-900 text-white 
                             rounded-2xl"
                             onClick={() => playRecording(recording)}
+                            disabled={!!playingRecordings[recording.id]}
                         >
-                            {isPlaying ? "Playing" : "Play!"}
+                            Play
                         </button>
                         <button
                             className="mt-2 mx-2 px-4 py-1 bg-red-800 border-2 border-pink-950 ring ring-pink-900 text-white 
