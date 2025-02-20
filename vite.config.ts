@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: "/fcc-drummachine",
+  base: "/FCC-DrumMachine",
 })
